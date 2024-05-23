@@ -21,7 +21,7 @@ print(df)
 # Create a boolean mask for each variation of the word "Chilies"
 filtered_df = df[df['ingredients'].str.contains('Chili|Chilies|Chile|Chili|Chiles', case=False)]
 
-# Calculate the time deltas out of ISO 8601
+# Convert cooking and prep time to timedelta format
 filtered_df['cookTime_timedelta'] = pd.to_timedelta(filtered_df['cookTime'], errors='coerce')
 filtered_df['prepTime_timedelta'] = pd.to_timedelta(filtered_df['prepTime'], errors='coerce')
 
@@ -39,4 +39,4 @@ filtered_df['time_classification'] = filtered_df['total_cook_time'].apply(lambda
 filtered_df = filtered_df.drop(['cookTime_timedelta','prepTime_timedelta','cookTime_seconds','prepTime_seconds','total_cook_time'], axis=1)
 
 # Export to csv
-filtered_df.to_csv('chilies_recipes.csv')
+filtered_df.to_csv('chilies_recipes.csv')  
